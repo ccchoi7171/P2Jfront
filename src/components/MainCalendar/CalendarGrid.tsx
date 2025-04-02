@@ -8,7 +8,7 @@ interface CalendarGridProps {
   mode: "calendar" | "timetable"; // 모드에 따른 달력 상태 변경
 }
 
-// ✅ 1. 타입 선언을 따로 해줘야 TypeScript가 추론 가능
+// 1. 타입 선언을 따로 해줘야 TypeScript가 추론 가능
 type DateInfo = {
   fullDate: Date;
   date: number;
@@ -16,8 +16,7 @@ type DateInfo = {
   isToday: boolean;
 };
 
-
-// ✅ 정확한 달력 날짜 생성 함수
+// 정확한 달력 날짜 생성 함수
 const generateCalendarDates = (year: number, month: number): DateInfo[] => {
 
   const today = new Date();
@@ -60,7 +59,6 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ currentMonth, currentYear }
         <div key={week} className="grid grid-cols-7 min-h-[60px]">
           {dates.slice(week * 7, week * 7 + 7).map((d, idx) => {
             let status: "default" | "hover" | "checked" | "differentMonth" = "default";
-
             if (!d.isCurrentMonth) {
               status = "differentMonth";
             } else if (selectedDate?.getTime() === d.fullDate.getTime()) {

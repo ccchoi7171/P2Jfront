@@ -3,20 +3,38 @@ import SidebarTab from "./SidebarTab";
 import CategoryList from "./CategoryList";
 import SidebarFooter from "./SidebarFooter";
 import CategoryCheckbox from "./CategoryCheckbox";
-import { X, Menu, PlusCircle, Sparkles, Star, Archive, Users } from "lucide-react";
+import {
+  X,
+  Menu,
+  PlusCircle,
+  Sparkles,
+  Star,
+  Archive,
+  Users,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import MemberUpdate from "../Modal/MemberUpdate";
+import MemberUpdate from "../Member/MemberUpdate";
+import CreateEventModal from "../Event/CreateEventModal";
+import FriendsList from "../Friend/FriendsList";
 
 interface Props {
   user: { profileImage?: string; nickname: string; email: string };
   isCollapsed: boolean;
   setIsCollapsed: (collapsed: boolean) => void;
+  setUser: React.Dispatch<React.SetStateAction<any>>; // setUser 추가
 }
 
-const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => {
+const LeftSidebar: React.FC<Props> = ({
+  user,
+  isCollapsed,
+  setIsCollapsed,
+  setUser,
+}) => {
   const [activeTab, setActiveTab] = React.useState<string | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = React.useState(false); // 모달 상태 추가
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = React.useState(false); // 일반 모달 상태 관리
+  const [showFriends, setShowFriends] = React.useState(false);
 
   const [categories, setCategories] = React.useState([
     { id: 1, label: "Red", color: "#FF4D49", checked: true },
@@ -27,6 +45,14 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
     { id: 6, label: "Purple", color: "#E769FF", checked: true },
     { id: 7, label: "Gray", color: "#929297", checked: true },
   ]);
+
+  const handleNewEventClick = () => {
+    setIsModalOpen(true); // 일반 모달 열기
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // 일반 모달 닫기
+  };
 
   const toggleCategory = (id: number) => {
     setCategories((prev) =>
@@ -44,7 +70,6 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
         method: "POST",
         credentials: "include",
       });
-  
       if (res.ok) {
         alert("로그아웃 되었습니다."); // 팝업 알림 추가
         navigate("/");
@@ -58,7 +83,6 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
       alert("오류가 발생했습니다.");
     }
   };
-  
 
   // 접혔을 경우
   if (isCollapsed) {
@@ -83,8 +107,14 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
               onClick={() => {
                 setActiveTab("new");
                 console.log("일정 생성 모달 열기");
+                handleNewEventClick();
               }}
             />
+            {/* 모달 표시 */}
+            {isModalOpen && (
+              <CreateEventModal onClose={() => setIsModalOpen(false)} />
+            )}
+
             <SidebarTab
               icon={<Star size={18} />}
               label="Important"
@@ -122,6 +152,7 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
               isCollapsed
               onClick={() => {
                 setActiveTab("friends");
+                navigate("/friends");
                 console.log("친구 관리");
               }}
             />
@@ -185,9 +216,15 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
             isCollapsed={false}
             onClick={() => {
               setActiveTab("new");
+              handleNewEventClick();
               console.log("일정 생성 모달 열기");
             }}
           />
+          {/* 모달 표시 */}
+          {isModalOpen && (
+            <CreateEventModal onClose={() => setIsModalOpen(false)} />
+          )}
+
           <SidebarTab
             icon={<Star size={18} />}
             label="Important"
@@ -225,6 +262,7 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
             isCollapsed={false}
             onClick={() => {
               setActiveTab("friends");
+              navigate("/friends");
               console.log("친구 관리 보기");
             }}
           />
@@ -272,3 +310,4 @@ const LeftSidebar: React.FC<Props> = ({ user, isCollapsed, setIsCollapsed }) => 
 };
 
 export default LeftSidebar;
+

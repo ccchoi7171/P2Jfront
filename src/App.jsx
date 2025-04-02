@@ -11,6 +11,11 @@ import axios from "axios";
 import MainPage from "./pages/MainPage";
 import KakaoCallback from "./pages/KakaoCallback";
 import CalendarPage from "./pages/CalendarPage";
+<<<<<<< HEAD
+=======
+import FriendList from "./components/Friend/FriendsList";
+import LeftSidebar from "./components/LeftSidebar/LeftSidebar";
+>>>>>>> lgd
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -111,7 +116,11 @@ export default function App() {
   return (
     <Router>
       <Routes>
+<<<<<<< HEAD
         {/* 메인페이지 */}
+=======
+        {/* 메인 페이지 */}
+>>>>>>> lgd
         <Route path="/" element={<MainPage user={user} />} />
 
         {/* 카카오 콜백 페이지 */}
@@ -131,6 +140,15 @@ export default function App() {
             )
           }
         />
+<<<<<<< HEAD
+=======
+
+        {/* 왼쪽 사이드바 - 다른 페이지와 별도로 존재하는 것이 아닌 경우 제거 가능 */}
+        <Route path="/left-sidebar" element={<LeftSidebar />} />
+
+        {/* 친구 목록 페이지 */}
+        <Route path="/friends" element={<FriendList />} />
+>>>>>>> lgd
       </Routes>
     </Router>
   );

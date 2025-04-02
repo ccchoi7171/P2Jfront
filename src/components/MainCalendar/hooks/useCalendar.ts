@@ -12,6 +12,7 @@ const useCalendar = (initialDate: Date) => {
     setCurrentDate((prevDate) => subMonths(prevDate, 1));
   };
 
+<<<<<<< HEAD
   const goToNextWeek = () => {
     setCurrentDate((prev) => {
       const newDate = new Date(prev);
@@ -28,6 +29,8 @@ const useCalendar = (initialDate: Date) => {
     });
   };
 
+=======
+>>>>>>> lgd
   const goToToday = () => {
     setCurrentDate(new Date());  // 오늘 날짜로 설정
   };
@@ -36,6 +39,7 @@ const useCalendar = (initialDate: Date) => {
     currentDate,
     goToNextMonth,
     goToPrevMonth,
+<<<<<<< HEAD
     goToNextWeek,
     goToPrevWeek,
     goToToday,
@@ -55,3 +59,10 @@ export const getWeekLabel = (date: Date) => {
 };
 
 export default useCalendar;
+=======
+    goToToday
+  };
+};
+
+export default useCalendar;
+>>>>>>> lgd
