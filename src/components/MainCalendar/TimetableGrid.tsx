@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const hours = Array.from({ length: 24 }, (_, i) => `${String(i).padStart(2, "0")}:00`);
+const hours = Array.from(
+  { length: 24 },
+  (_, i) => `${String(i).padStart(2, "0")}:00`
+);
 const hourHeight = 48;
 
 const TimetableGrid: React.FC = () => {
@@ -29,20 +32,25 @@ const TimetableGrid: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex-1 overflow-y-scroll custom-scrollbar" ref={scrollRef}>
+    <div
+      className="relative flex-1 overflow-y-scroll custom-scrollbar"
+      ref={scrollRef}
+    >
       {/* 현재 시간 빨간 줄 */}
       <div
         className="absolute left-0 right-0 h-[1px] bg-red-500 z-20"
         style={{ top: `${topOffset}px` }}
       >
         <div className="absolute right-1 -top-2 bg-red-500 text-white text-[11px] px-2 py-[1px] rounded-full shadow-sm">
-            {new Date().toTimeString().slice(0, 5)} {/* ex. 13:24 */}
+          {new Date().toTimeString().slice(0, 5)} {/* ex. 13:24 */}
         </div>
       </div>
 
-
       {hours.map((hour, rowIdx) => (
-        <div key={rowIdx} className="grid grid-cols-7 h-[48px] border-t border-[#E0E0E0] text-sm">
+        <div
+          key={rowIdx}
+          className="grid grid-cols-7 h-[48px] border-t border-[#E0E0E0] text-sm"
+        >
           {Array.from({ length: 7 }).map((_, colIdx) => (
             <div
               key={colIdx}

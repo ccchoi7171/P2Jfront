@@ -19,7 +19,7 @@ const useCalendar = (initialDate: Date) => {
       return newDate;
     });
   };
-  
+
   const goToPrevWeek = () => {
     setCurrentDate((prev) => {
       const newDate = new Date(prev);
@@ -29,7 +29,7 @@ const useCalendar = (initialDate: Date) => {
   };
 
   const goToToday = () => {
-    setCurrentDate(new Date());  // 오늘 날짜로 설정
+    setCurrentDate(new Date()); // 오늘 날짜로 설정
   };
 
   return {

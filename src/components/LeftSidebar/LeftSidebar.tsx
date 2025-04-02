@@ -186,10 +186,7 @@ const LeftSidebar: React.FC<Props> = ({
         </aside>
 
         {isEditModalOpen && (
-          <MemberUpdate
-            user={user}
-            onClose={() => setIsEditModalOpen(false)}
-          />
+          <MemberUpdate user={user} onClose={() => setIsEditModalOpen(false)} />
         )}
       </>
     );
@@ -201,9 +198,14 @@ const LeftSidebar: React.FC<Props> = ({
         <div className="flex justify-between items-center px-4 py-3">
           <div className="flex items-center gap-2">
             <img src="/P2J.png" alt="logo" className="w-8 h-8" />
-            <span className="text-xl font-bold text-[#C26767] drop-shadow">P2J</span>
+            <span className="text-xl font-bold text-[#C26767] drop-shadow">
+              P2J
+            </span>
           </div>
-          <X className="w-6 h-6 text-gray-500 cursor-pointer" onClick={toggleCollapse} />
+          <X
+            className="w-6 h-6 text-gray-500 cursor-pointer"
+            onClick={toggleCollapse}
+          />
         </div>
 
         <hr className="border-gray-300 mx-4" />
@@ -300,14 +302,10 @@ const LeftSidebar: React.FC<Props> = ({
       </aside>
 
       {isEditModalOpen && (
-        <MemberUpdate
-          user={user}
-          onClose={() => setIsEditModalOpen(false)}
-       />
+        <MemberUpdate user={user} onClose={() => setIsEditModalOpen(false)} />
       )}
     </>
   );
 };
 
 export default LeftSidebar;
-

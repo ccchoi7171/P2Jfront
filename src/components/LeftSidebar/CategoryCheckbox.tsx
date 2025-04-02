@@ -41,9 +41,7 @@ const CategoryCheckbox: React.FC<CategoryCheckboxProps> = ({
           <div
             className="w-[12px] h-[12px] rounded-sm shadow-inner"
             style={{
-              backgroundColor: hovered
-                ? darkenColor(color)
-                : color,
+              backgroundColor: hovered ? darkenColor(color) : color,
             }}
           />
         )}

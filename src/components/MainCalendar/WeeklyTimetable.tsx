@@ -11,8 +11,14 @@ const WeeklyTimetable: React.FC<WeeklyTimetableProps> = ({ currentDate }) => {
   const startOfWeek = new Date(currentDate);
   startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
 
-  const weekDates = Array.from({ length: 7 }, (_, i) =>
-    new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate() + i)
+  const weekDates = Array.from(
+    { length: 7 },
+    (_, i) =>
+      new Date(
+        startOfWeek.getFullYear(),
+        startOfWeek.getMonth(),
+        startOfWeek.getDate() + i
+      )
   );
 
   return (
@@ -20,8 +26,8 @@ const WeeklyTimetable: React.FC<WeeklyTimetableProps> = ({ currentDate }) => {
       <div className="sticky top-0 z-10 bg-white">
         <WeekdayHeader />
         <WeekDateHeader
-            weekDates={weekDates}
-            currentMonth={currentDate.getMonth()} // 현재 달 넘겨줌
+          weekDates={weekDates}
+          currentMonth={currentDate.getMonth()} // 현재 달 넘겨줌
         />
       </div>
       <TimetableGrid />

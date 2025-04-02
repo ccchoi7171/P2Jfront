@@ -1,8 +1,7 @@
 import React from "react";
-import {  } from "react-router-dom";
+import {} from "react-router-dom";
 
 export default function MainPage() {
-
   const REST_API_KEY = "d8e1934bd8359a4c286f17336d39c6e2";
   const REDIRECT_URI = "http://localhost:3000/kakao/callback";
 

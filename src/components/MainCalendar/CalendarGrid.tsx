@@ -24,7 +24,11 @@ const generateCalendarDates = (year: number, month: number): DateInfo[] => {
   const dates: DateInfo[] = [];
 
   for (let i = 0; i < 42; i++) {
-    const current = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
+    const current = new Date(
+      startDate.getFullYear(),
+      startDate.getMonth(),
+      startDate.getDate() + i
+    );
 
     dates.push({
       fullDate: current,
@@ -40,7 +44,10 @@ const generateCalendarDates = (year: number, month: number): DateInfo[] => {
   return dates;
 };
 
-const CalendarGrid: React.FC<CalendarGridProps> = ({ currentMonth, currentYear }) => {
+const CalendarGrid: React.FC<CalendarGridProps> = ({
+  currentMonth,
+  currentYear,
+}) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -59,11 +66,14 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ currentMonth, currentYear }
             className="grid grid-cols-7 min-h-[120px] border-t border-gray-200"
           >
             {dates.slice(week * 7, week * 7 + 7).map((d, idx) => {
-              let status: "default" | "hover" | "checked" | "differentMonth" = "default";
+              let status: "default" | "hover" | "checked" | "differentMonth" =
+                "default";
 
               if (!d.isCurrentMonth) status = "differentMonth";
-              else if (selectedDate?.getTime() === d.fullDate.getTime()) status = "checked";
-              else if (hoveredDate?.getTime() === d.fullDate.getTime()) status = "hover";
+              else if (selectedDate?.getTime() === d.fullDate.getTime())
+                status = "checked";
+              else if (hoveredDate?.getTime() === d.fullDate.getTime())
+                status = "hover";
 
               return (
                 <DateBox

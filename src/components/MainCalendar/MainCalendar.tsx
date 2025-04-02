@@ -7,7 +7,14 @@ import useCalendar, { getWeekLabel } from "./hooks/useCalendar";
 import WeeklyTimetable from "./WeeklyTimetable";
 
 const MainCalendar: React.FC = () => {
-  const { currentDate, goToNextMonth, goToPrevMonth, goToNextWeek, goToPrevWeek, goToToday } = useCalendar(new Date());
+  const {
+    currentDate,
+    goToNextMonth,
+    goToPrevMonth,
+    goToNextWeek,
+    goToPrevWeek,
+    goToToday,
+  } = useCalendar(new Date());
   const [mode, setMode] = useState<"calendar" | "timetable">("calendar");
 
   const handleModeChange = (newMode: "calendar" | "timetable") => {
@@ -16,7 +23,7 @@ const MainCalendar: React.FC = () => {
 
   const currentMonth = currentDate.toLocaleString("en-US", { month: "long" });
   const currentYear = currentDate.getFullYear();
-  
+
   // 모드에 따라 동작 다르게 설정
   const handlePrev = () => {
     mode === "calendar" ? goToPrevMonth() : goToPrevWeek();

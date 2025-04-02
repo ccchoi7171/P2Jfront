@@ -5,18 +5,26 @@ import useCalendar from "./hooks/useCalendar"; // useCalendar 훅을 가져옴
 
 interface TopBarProps {
   year: number;
-  month: string;  // month는 이제 string 타입
+  month: string; // month는 이제 string 타입
   onPrev: () => void;
   onNext: () => void;
   onToday: () => void;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ year, month, onPrev, onNext, onToday }) => {
+const TopBar: React.FC<TopBarProps> = ({
+  year,
+  month,
+  onPrev,
+  onNext,
+  onToday,
+}) => {
   return (
     <div className="flex justify-between items-end w-full h-[95px] border-b border-[#929297] px-8">
       {/* 날짜 (년.월) */}
       <div className="h-1 flex items-center gap-1 pb-7">
-        <span className="text-[35px] font-semibold text-[#E05054]">{month}</span>
+        <span className="text-[35px] font-semibold text-[#E05054]">
+          {month}
+        </span>
         <span className="text-[35px] font-semibold text-[#E05054]">.</span>
         <span className="text-[35px] font-semibold text-[#E05054]">{year}</span>
       </div>

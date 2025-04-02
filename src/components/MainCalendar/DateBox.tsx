@@ -12,7 +12,14 @@ interface DateBoxProps {
   onMouseLeave?: () => void;
 }
 
-const DateBox: React.FC<DateBoxProps> = ({ date, status = "default", isToday, onClick, onMouseEnter, onMouseLeave }) => {
+const DateBox: React.FC<DateBoxProps> = ({
+  date,
+  status = "default",
+  isToday,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}) => {
   return (
     <div
       onClick={onClick}
@@ -28,11 +35,14 @@ const DateBox: React.FC<DateBoxProps> = ({ date, status = "default", isToday, on
         }
       )}
     >
-      <span className={clsx("flex justify-center items-center text-[15px] font-light text-[#2E2E2E] leading-none",
-      isToday
-        ? "bg-[#C69788] text-white rounded-full px-2 py-[2px]"
-        : "text-[#2E2E2E]")}
-        >
+      <span
+        className={clsx(
+          "flex justify-center items-center text-[15px] font-light text-[#2E2E2E] leading-none",
+          isToday
+            ? "bg-[#C69788] text-white rounded-full px-2 py-[2px]"
+            : "text-[#2E2E2E]"
+        )}
+      >
         {date.toString().padStart(2, "0")}
       </span>
     </div>
