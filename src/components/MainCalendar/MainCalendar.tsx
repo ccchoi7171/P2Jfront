@@ -42,7 +42,7 @@ const MainCalendar: React.FC = () => {
         {mode === "calendar" ? (
           <>
             <WeekdayHeader />
-            <div className="flex-1 min-h-[360px] overflow-auto">
+            <div className="flex flex-col w-full h-screen overflow-hidden">
               <CalendarGrid
                 currentMonth={currentDate.getMonth()}
                 currentYear={currentDate.getFullYear()}

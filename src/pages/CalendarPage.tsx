@@ -1,10 +1,19 @@
-import React, { useState } from "react";
 import LeftSidebar from "../components/LeftSidebar/LeftSidebar";
 import MainCalendar from "../components/MainCalendar/MainCalendar";
+import React, { useState, Dispatch, SetStateAction } from "react";
 
-const CalendarPage: React.FC<{
-  user: { profileImage?: string; nickname: string; email: string };
-}> = ({ user }) => {
+interface User {
+  profileImage?: string;
+  nickname: string;
+  email: string;
+}
+
+interface CalendarPageProps {
+  user: User;
+  setUser: Dispatch<SetStateAction<User | null>>;
+}
+
+const CalendarPage: React.FC<CalendarPageProps> = ({ user, setUser }) => {
   const [isCollapsed, setIsCollapsed] = useState(false); // 사이드바 상태
 
   return (
@@ -17,6 +26,7 @@ const CalendarPage: React.FC<{
       >
         <LeftSidebar
           user={user}
+          setUser={setUser}
           isCollapsed={isCollapsed}
           setIsCollapsed={setIsCollapsed}
         />
